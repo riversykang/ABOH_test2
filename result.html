@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<body>
+    <h1>Result</h1>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Local Storage에서 값을 가져옴
+            const text1 = localStorage.getItem('text1');
+            const text2 = localStorage.getItem('text2');
+            const text3 = localStorage.getItem('text3');
+            const text4 = localStorage.getItem('text4');
+            const text5 = localStorage.getItem('text5');
+            const text6 = localStorage.getItem('text6');
+
+            // 가져온 값들을 HTML에 표시
+            document.body.innerHTML += `<p>${text1}</p>`;
+            document.body.innerHTML += `<p>${text2}</p>`;
+            document.body.innerHTML += `<p>${text3}</p>`;
+            document.body.innerHTML += `<p>${text4}</p>`;
+            document.body.innerHTML += `<p>${text5}</p>`;
+            document.body.innerHTML += `<p>${text6}</p>`;
+        });
+    </script>
+</body>
+</html>

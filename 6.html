@@ -189,15 +189,15 @@
                 transform: translate(-50%, -50%) rotate(360deg);
             }
         }
-        
+
     </style>
 </head>
 <body>
-    <h1>What song made you happiest?</h1>
-    <h2>2023년, 어떤 노래를 들을 때 가장 행복했나요?</h2>
+    <h1>Third Question 5</h1>
+    <h2>Third Question 5</h2>
     <div class="input-container">
-        <input type="text" id="text1Input" placeholder="Enter here">
-        <button onclick="logtext1()">Submit</button>
+        <input type="text" id="text5Input" placeholder="Enter here">
+        <button onclick="logtext5()">Submit</button>
     </div>
 
     <div class="snowflake-container" id="snowflakeContainer">
@@ -213,47 +213,51 @@
         <img src="main-piece-big.svg" alt="Main Piece Big Image" class="main-piece-big">
     </div>
 
+
     <script type="text/javascript">
-        // JavaScript로 무작위 위치에 Snowflake.svg 이미지 생성 및 애니메이션 추가
-        document.addEventListener('DOMContentLoaded', function() {
-            const snowflakeContainer = document.getElementById('snowflakeContainer');
-            const numSnowflakes = 10;
+    // JavaScript로 무작위 위치에 Snowflake.svg 이미지 생성 및 애니메이션 추가
+    document.addEventListener('DOMContentLoaded', function() {
+        const snowflakeContainer = document.getElementById('snowflakeContainer');
+        const numSnowflakes = 10;
 
-            for (let i = 0; i < numSnowflakes; i++) {
-                createSnowflake();
-            }
-
-            function createSnowflake() {
-                const snowflake = document.createElement('img');
-                snowflake.className = 'snowflake';
-                snowflake.src = 'snowflake.svg';
-
-                const randomX = Math.random() * window.innerWidth;
-                const randomDelay = Math.random() * 5;
-
-                snowflake.style.left = `${randomX}px`;
-                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                snowflake.style.animationDelay = `-${randomDelay}s`;
-
-                snowflakeContainer.appendChild(snowflake);
-            }
-        });
-
-        // 텍스트 입력값을 콘솔에 출력하고 3.html로 이동하며, text1 값을 Local Storage에 저장하는 함수
-        function logtext1() {
-            const text1Input = document.getElementById('text1Input');
-            const text1 = text1Input.value;
-
-            if (text1.trim() !== '') {
-                console.log(`Selected text1: ${text1}`);
-                // 페이지 이동
-                window.location.href = '3.html';
-                // Local Storage에 저장
-                localStorage.setItem('text1', text1);
-            } else {
-                console.log('Please enter a text1.');
-            }
+        for (let i = 0; i < numSnowflakes; i++) {
+            createSnowflake();
         }
-    </script>
+
+        function createSnowflake() {
+            const snowflake = document.createElement('img');
+            snowflake.className = 'snowflake';
+            snowflake.src = 'snowflake.svg';
+
+            const randomX = Math.random() * window.innerWidth;
+            const randomDelay = Math.random() * 5;
+
+            snowflake.style.left = `${randomX}px`;
+            snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            snowflake.style.animationDelay = `-${randomDelay}s`;
+
+            snowflakeContainer.appendChild(snowflake);
+        }
+    });
+
+    // 텍스트 입력값을 콘솔에 출력하고 6.html로 이동하는 함수
+    function logtext5() {
+        const text5Input = document.getElementById('text5Input');
+        const text5 = text5Input.value;
+
+        if (text5.trim() !== '') {
+            console.log(`Selected text5: ${text5}`);
+            // 페이지 이동
+            window.location.href = '7.html';
+             // Local Storage에 저장
+                localStorage.setItem('text5', text5);
+        } else {
+            console.log('Please enter a text5.');
+        }
+    }
+</script>
 </body>
 </html>
+
+
+
