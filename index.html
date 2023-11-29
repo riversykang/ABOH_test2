@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abottleofhappiness</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('bgimage.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* 100% viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .titletext {
+            width: 375.88px;
+            height: 284px;
+            flex-shrink: 0;
+            background-image: url('titletext.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 55px; /* Adjust the top position as needed */
+        }
+
+        .roundbrk {
+            color: #13C41A;
+            font-family: 'Alike Angular', sans-serif;
+            font-size: 52px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -6.44px;
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+             text-shadow: 
+                1px 0 0 #000,
+                0 1px 0 #000,
+                -1px 0 0 #000,
+                0 -1px 0 #000;
+        }
+
+        h1 {
+          color: #13C41A;
+            font-family: Apple SD Gothic Neo;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 350;
+            line-height: normal;
+            letter-spacing: -1px;
+            position: absolute;
+            top: 80%;      
+            }
+
+        .snow-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .snow-image {
+            max-width: 100%; /* 이미지의 최대 너비를 부모 요소의 100%로 설정 */
+        }
+
+        .snowflake-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Make sure the snowflakes do not interfere with user interactions */
+        }
+
+        .snowflake {
+            position: absolute;
+            background-image: url('snowflake.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+            .main-piece-container {
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 5s linear infinite; /* 회전 애니메이션 추가 */
+        }
+
+        .main-piece {
+            max-width: 100%;
+            transition: transform 0.5s ease-in-out; /* 마우스 호버 트랜지션 추가 */
+            transform-origin: center; /* 회전 중심을 중앙으로 설정 */
+        }
+
+        .main-piece:hover {
+            content: url('main-piece-2.svg'); /* 마우스 호버 시 이미지 변경 */
+            transform: scale(1.2); /* 마우스 호버 시 크기 조절 (원하는 크기로 조절) */
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="snowflake-container" id="snowflakeContainer">
+    <!-- 이미지 태그 추가 -->
+    <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
+    </div>
+
+    <div class="titletext"></div>
+    <div class="roundbrk">(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</div>
+    <h1>2023년의 행복의 조각들을 담아보세요</h1>
+    <div class="main-piece-container" onmouseover="hoverMainPiece()" onmouseout="unhoverMainPiece()">
+        <img src="main-piece.svg" alt="Main Piece Image" class="main-piece">
+    </div>
+    <div class="snow-container">
+        <img src="snowbottom.svg" alt="Snow Image" class="dynamicImage">
+    </div>
+    <div class="snow-container">
+    <img src="snowbottom.svg" alt="Snow Image" id="dynamicImage">
+    </div>
+
+
+
+
+    <script>
+        // JavaScript로 이미지의 너비를 동적으로 조절
+        window.addEventListener('resize', adjustImageWidth);
+        adjustImageWidth(); // 초기 실행
+
+        function adjustImageWidth() {
+            var screenWidth = window.innerWidth;
+            var image = document.getElementById('dynamicImage');
+            var maxWidth = 500; // 이미지의 최대 너비를 설정 (필요에 따라 조절)
+
+            // screenWidth와 maxWidth 중 작은 값을 이미지의 너비로 설정
+            image.style.width = Math.min(screenWidth, maxWidth) + 'px';
+        }
+
+          // JavaScript로 무작위 위치에 Snowflake.svg 이미지 생성 및 애니메이션 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            const snowflakeContainer = document.getElementById('snowflakeContainer');
+            const numSnowflakes = 10;
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                createSnowflake();
+            }
+
+   function createSnowflake() {
+    const snowflake = document.createElement('img');
+    snowflake.className = 'snowflake';
+    snowflake.src = 'snowflake.svg';
+
+    const randomX = Math.random() * window.innerWidth;
+    const randomDelay = Math.random() * 5;
+
+    snowflake.style.left = `${randomX}px`;
+    snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+    snowflake.style.animationDelay = `-${randomDelay}s`;
+
+    snowflakeContainer.appendChild(snowflake);
+}
+
+        });
+
+          // JavaScript로 main-piece.svg 이미지를 동적으로 조절
+        window.addEventListener('resize', adjustMainPiece);
+        adjustMainPiece(); // 초기 실행
+
+        function adjustMainPiece() {
+            var screenWidth = window.innerWidth;
+            var mainPiece = document.querySelector('.main-piece');
+
+            // main-piece.svg 이미지를 화면 정중앙에 위치
+            mainPiece.style.position = 'absolute';
+            mainPiece.style.top = '50%';
+            mainPiece.style.left = '50%';
+            mainPiece.style.transform = 'translate(-50%, -50%)';
+
+            // screenWidth에 따라 이미지의 크기를 동적으로 조절 (필요에 따라 조절)
+            var maxWidth = 500;
+            mainPiece.style.maxWidth = Math.min(screenWidth, maxWidth) + 'px';
+        }
+
+ function hoverMainPiece() {
+    var mainPiece = document.querySelector('.main-piece');
+    mainPiece.src = 'main-piece-2.svg'; // 마우스 호버 시 이미지 변경
+    mainPiece.style.transform = 'scale(1.2) translate(-50%, -50%)'; // 크기 조절 및 이동
+}
+
+function unhoverMainPiece() {
+    var mainPiece = document.querySelector('.main-piece');
+    mainPiece.src = 'main-piece.svg'; // 마우스가 벗어날 때 이미지 초기화
+    mainPiece.style.transform = 'scale(1) translate(-50%, -50%)'; // 크기 초기화 및 이동
+}
+
+  // 이동 함수 추가
+        function goToSecondPage() {
+            // 페이지 이동
+            window.location.href = '2.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... (이전의 Snowflake 및 다른 요소들의 생성 코드는 그대로 유지) ...
+
+            // 두 번째 페이지로 이동하는 이벤트 추가
+            var mainPieceContainer = document.querySelector('.main-piece-container');
+            mainPieceContainer.addEventListener('click', goToSecondPage);
+        });
+
+
+</script>
+
+    </script>
+</body>
+</html>
+

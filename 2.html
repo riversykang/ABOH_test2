@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('bgimage.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* 100% viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            position: absolute;
+            font-family: 'Alike Angular', sans-serif;
+            color: #13C41A;
+            top: 2%;
+            font-size: 62px;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -4.34px;
+            text-shadow:
+                1px 0 0 #000,
+                0 1px 0 #000,
+                -1px 0 0 #000,
+                0 -1px 0 #000;
+            text-align: center; /* 중앙 정렬 추가 */
+        }
+
+        h2 {
+            color: #13C41A;
+            font-family: Apple SD Gothic Neo;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 350;
+            line-height: normal;
+            letter-spacing: -1px;
+            position: absolute;
+            top: 15%;  
+            opacity: 0.9; /* 투명도 설정 */    
+        }
+
+        .snowflake-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Make sure the snowflakes do not interfere with user interactions */
+        }
+
+        .snowflake {
+            position: absolute;
+            background-image: url('snowflake.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        /* 추가된 스타일 */
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-family: Alike Angular, sans-serif;
+            font-size: 62px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -4.34px;
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+            color: #13C41A; /* 입력 텍스트의 색 변경 */
+            text-align: center; /* 중앙 정렬 추가 */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .roundbrk1 {
+            color: #13C41A;
+            font-family: 'Alike Angular', sans-serif;
+            font-size: 72px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -6.44px;
+            position: absolute;
+            top: 48.5%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+             text-shadow: 
+                1px 0 0 #000,
+                0 1px 0 #000,
+                -1px 0 0 #000,
+                0 -1px 0 #000;
+        }
+         .roundbrk2 {
+            color: #13C41A;
+            font-family: 'Alike Angular', sans-serif;
+            font-size: 72px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -6.44px;
+            position: absolute;
+            top: 48.5%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+             text-shadow: 
+                1px 0 0 #000,
+                0 1px 0 #000,
+                -1px 0 0 #000,
+                0 -1px 0 #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>What song made you happiest?</h1>
+    <h2>2023년, 어떤 노래를 들을 때 가장 행복했나요?</h2>
+    <div class="input-container">
+        <input type="text" id="songInput" placeholder="Enter your song">
+        <button onclick="logSong()">Submit</button>
+    </div>
+
+    <div class="snowflake-container" id="snowflakeContainer">
+        <!-- 이미지 태그 추가 -->
+        <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
+    </div>
+
+    <div class="roundbrk1">(</div>
+    <div class="roundbrk2">)</div>
+
+    <script type="text/javascript">
+        // JavaScript로 무작위 위치에 Snowflake.svg 이미지 생성 및 애니메이션 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            const snowflakeContainer = document.getElementById('snowflakeContainer');
+            const numSnowflakes = 10;
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                createSnowflake();
+            }
+
+            function createSnowflake() {
+                const snowflake = document.createElement('img');
+                snowflake.className = 'snowflake';
+                snowflake.src = 'snowflake.svg';
+
+                const randomX = Math.random() * window.innerWidth;
+                const randomDelay = Math.random() * 5;
+
+                snowflake.style.left = `${randomX}px`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                snowflake.style.animationDelay = `-${randomDelay}s`;
+
+                snowflakeContainer.appendChild(snowflake);
+            }
+        });
+
+        // 텍스트 입력값을 콘솔에 출력하는 함수
+        function logSong() {
+            const songInput = document.getElementById('songInput');
+            const song = songInput.value;
+
+            if (song.trim() !== '') {
+                console.log(`Selected song: ${song}`);
+            } else {
+                console.log('Please enter a song.');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
