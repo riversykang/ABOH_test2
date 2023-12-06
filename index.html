@@ -20,15 +20,28 @@
         }
 
         .titletext {
-            width: 375.88px;
-            height: 284px;
+            width: 260px;
+            height: 200px;
             flex-shrink: 0;
             background-image: url('titletext.svg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: absolute;
-            top: 55px; /* Adjust the top position as needed */
+            top: 2%; /* Adjust the top position as needed */
+        }
+
+         .emptybtwithsnow {
+            width: 100%;
+            height: 74%;
+            flex-shrink: 0;
+            background-image: url('emptybtwithsnow.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            bottom: 0%;
+            z-index: -1; /* 배경 레이어 위에 표시 */
         }
 
         .roundbrk {
@@ -53,13 +66,15 @@
         h1 {
           color: #13C41A;
             font-family: Apple SD Gothic Neo;
-            font-size: 20px;
+            font-size: 18px;
             font-style: normal;
             font-weight: 350;
             line-height: normal;
             letter-spacing: -1px;
             position: absolute;
-            top: 80%;      
+            top: 80%; 
+            text-align: center;   
+              
             }
 
         .snow-container {
@@ -98,7 +113,8 @@
                 transform: translateY(110vh) rotate(360deg);
             }
         }
-            .main-piece-container {
+
+              .main-piece-container {
             position: absolute;
             top: 53%;
             left: 50%;
@@ -116,6 +132,7 @@
             content: url('main-piece-2.svg'); /* 마우스 호버 시 이미지 변경 */
             transform: scale(1.2); /* 마우스 호버 시 크기 조절 (원하는 크기로 조절) */
         }
+        
 
         @keyframes rotate {
             0% {
@@ -135,17 +152,22 @@
     </div>
 
     <div class="titletext"></div>
-    <div class="roundbrk">(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</div>
-    <h1>2023년의 행복의 조각들을 담아보세요</h1>
-    <div class="main-piece-container" onmouseover="hoverMainPiece()" onmouseout="unhoverMainPiece()">
+    <div class="roundbrk">(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</div>
+    <h1>올해, 당신은 얼마나 행복하셨나요?<br>올해 나의 행복의 조각들을 하나씩 찾아,<br>병 안에 담아 간직하세요.</h1>
+      <div class="main-piece-container" onmouseover="hoverMainPiece()" onmouseout="unhoverMainPiece()">
         <img src="main-piece.svg" alt="Main Piece Image" class="main-piece">
     </div>
+
+      <div class="emptybtwithsnow"></div>
+
     <div class="snow-container">
-        <img src="snowbottom.svg" alt="Snow Image" class="dynamicImage">
+      
     </div>
     <div class="snow-container">
     <img src="snowbottom.svg" alt="Snow Image" id="dynamicImage">
     </div>
+
+
 
 
 
@@ -209,7 +231,7 @@
             mainPiece.style.maxWidth = Math.min(screenWidth, maxWidth) + 'px';
         }
 
- function hoverMainPiece() {
+         function hoverMainPiece() {
     var mainPiece = document.querySelector('.main-piece');
     mainPiece.src = 'main-piece-2.svg'; // 마우스 호버 시 이미지 변경
     mainPiece.style.transform = 'scale(1.2) translate(-50%, -50%)'; // 크기 조절 및 이동
@@ -220,6 +242,7 @@ function unhoverMainPiece() {
     mainPiece.src = 'main-piece.svg'; // 마우스가 벗어날 때 이미지 초기화
     mainPiece.style.transform = 'scale(1) translate(-50%, -50%)'; // 크기 초기화 및 이동
 }
+
 
   // 이동 함수 추가
         function goToSecondPage() {
