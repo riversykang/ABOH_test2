@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('snowbg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .centered-image {
+            position: absolute;
+            bottom: -1%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .titletext {
+            width: 231px;
+            height: 161px;
+            flex-shrink: 0;
+            background-image: url('titletext.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 3%;
+        }
+
+        .snowflake-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* Lower z-index */
+        }
+
+        .snowflake {
+            position: absolute;
+            background-image: url('snowflake.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear infinite;
+            z-index: 2;
+        }
+
+        .random-div1,
+        .random-div2,
+        .random-div3,
+        .random-div4,
+        .random-div5,
+        .random-div6 {
+            position: absolute;
+            background-size: cover;
+            background-position: random;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: floatAnimation 2s infinite alternate;
+            opacity: 1;
+        }
+
+        .random-div1 {
+            width: 250px;
+            height: 265px;
+            cursor: grab;
+            user-select: none;
+            z-index: 1;
+            left: 18%;
+            top: 30%;
+        }
+
+        .random-div2 {
+            width: 230px;
+            height: 219px;
+            cursor: grab;
+            user-select: none;
+            z-index: 1;
+            left: 4%;
+            top: 45%;
+        }
+
+        .random-div3 {
+            width: 236px;
+            height: 237px;
+            cursor: grab;
+            user-select: none;
+            z-index: 1;
+            left: 62%;
+            top: 30%;
+        }
+
+        .random-div4 {
+            width: 230px;
+            height: 215px;
+            cursor: grab;
+            user-select: none;
+            z-index: 1;
+            left: 26%;
+            top: 60%;
+        }
+
+        .random-div5 {
+            width: 252px;
+            height: 214px;
+            cursor: grab;
+            user-select: none;
+            z-index: 1;
+            left: 65%;
+            top: 60%;
+        }
+
+        .random-div6 {
+            width: 266px;
+            height: 291px;
+            cursor: grab;
+            user-select: none;
+            z-index: 1;
+            left: 80%;
+            top: 50%;
+        }
+
+        .random-div1 p,
+        .random-div2 p,
+        .random-div3 p,
+        .random-div4 p,
+        .random-div5 p,
+        .random-div6 p {
+            margin: 0;
+            color: #000;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.55);
+            font-family: JEpisode;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: -0.8px;
+            word-wrap: break-word;
+            max-width: 7ch;
+        }
+
+        .b1 {
+            position: fixed;
+            top: 3%;
+            right: 1.5%;
+            margin: 0;
+            color: #13C41A;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.55);
+            font-family: JEpisode;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1.5;
+            letter-spacing: -0.7px;
+            text-align: right;
+        }
+
+        button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+          #captureButton {
+            position: fixed;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            top: 10px;
+            left: calc(10px + 160px); /* 버튼 간격 고려하여 왼쪽 위치 조정 */
+        }
+
+        .floating-text {
+            position: absolute;
+            color: #fff;
+            font-size: 24px;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(30px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+         /* 추가된 스타일 */
+        .screenshot-container {
+            display: none; /* 초기에 숨김 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #screenshotImage {
+            max-width: 80%; /* 이미지 크기 조정 */
+            max-height: 80%;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="snowflake-container" id="snowflakeContainer">
+        <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
+    </div>
+
+    <div class="titletext"></div>
+    <div class="b1">행복의 기억이 사라지지 않도록, <br> 마우스로 드래그해 병 안에 담아보세요. <br> 아래 버튼을 눌러 영원히 간직하세요. </div>
+
+    <div class="random-div1" id="draggableDiv1">
+        <p>Your Text Here</p>
+    </div>
+
+    <div class="random-div2" id="draggableDiv2">
+        <p>Your Text Here</p>
+    </div>
+
+    <div class="random-div3" id="draggableDiv3">
+        <p>Your Text Here</p>
+    </div>
+
+    <div class="random-div4" id="draggableDiv4">
+        <p>Your Text Here</p>
+    </div>
+
+    <div class="random-div5" id="draggableDiv5">
+        <p>Your Text Here</p>
+    </div>
+
+    <div class="random-div6" id="draggableDiv6">
+        <p>Your Text Here</p>
+    </div>
+
+    <div class="floating-text" id="floatingText">담아보세요</div>
+
+    <img src="emptybt.png" alt="Empty Button" class="centered-image" width="575" height="783">
+
+    <button onclick="restart()">Restart</button>
+
+     <button id="captureButton" onclick="captureScreenshot()">Capture Screenshot</button>
+
+    <!-- 추가된 캡쳐 화면을 표시할 컨테이너 -->
+    <div class="screenshot-container" id="screenshotContainer">
+        <!-- 캡쳐된 이미지 표시 -->
+        <img id="screenshotImage" alt="Screenshot">
+        <!-- 닫기 버튼 -->
+        <div class="close-button" onclick="closeScreenshot()">Close</div>
+    </div>
+
+
+
+    <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const snowflakeContainer = document.getElementById('snowflakeContainer');
+            const numSnowflakes = 15;
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                createSnowflake();
+            }
+
+            function createSnowflake() {
+                const snowflake = document.createElement('img');
+                snowflake.className = 'snowflake';
+                snowflake.src = 'snowflake.svg';
+
+                const randomX = Math.random() * window.innerWidth;
+                const randomY = 0;
+                const randomDelay = Math.random() * 5;
+
+                snowflake.style.left = `${randomX}px`;
+                snowflake.style.top = `${randomY}px`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                snowflake.style.animationDelay = `-${randomDelay}s`;
+
+                snowflakeContainer.appendChild(snowflake);
+            }
+
+            const draggableDivs = document.querySelectorAll('.random-div1, .random-div2, .random-div3, .random-div4, .random-div5, .random-div6');
+
+            draggableDivs.forEach((draggableDiv, index) => {
+                const textKey = `text${index + 1}`;
+                const text = localStorage.getItem(textKey) || `Your Text Here`;
+
+                const pElement = draggableDiv.querySelector('p');
+                pElement.innerHTML = text;
+
+                draggableDiv.style.backgroundImage = `url('repiece${index + 1}.svg')`;
+
+                let isDragging = false;
+
+                draggableDiv.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    draggableDiv.style.cursor = 'grabbing';
+                    draggableDiv.style.animation = 'none';
+                });
+
+                document.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    draggableDiv.style.cursor = 'grab';
+                    draggableDiv.style.animation = 'floatAnimation 2s infinite alternate';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (isDragging) {
+                        draggableDiv.style.left = `${e.clientX - draggableDiv.clientWidth / 2}px`;
+                        draggableDiv.style.top = `${e.clientY - draggableDiv.clientHeight / 2}px`;
+                    }
+                });
+            });
+
+            // 1초 후에 floating text 나타나게 함
+            setTimeout(() => {
+                const floatingText = document.getElementById('floatingText');
+                floatingText.style.opacity = '1';
+            }, 1000);
+
+            // 7초 후에 floating text 사라지게 함
+            setTimeout(() => {
+                const floatingText = document.getElementById('floatingText');
+                floatingText.style.animation = 'fadeOutDown 1s ease-out forwards';
+            }, 7000);
+        });
+
+        // 추가된 스크립트
+
+        function captureScreenshot() {
+            // 캡쳐 중에 버튼을 비활성화합니다.
+            document.getElementById('captureButton').disabled = true;
+
+            // body 요소를 가져옵니다.
+            const body = document.body;
+
+            // html2canvas을 사용하여 body를 캡쳐합니다.
+            html2canvas(body).then(canvas => {
+                // 캡쳐가 완료된 후 버튼을 다시 활성화합니다.
+                document.getElementById('captureButton').disabled = false;
+
+                // 캡쳐된 이미지를 표시하는 컨테이너를 가져옵니다.
+                const screenshotContainer = document.getElementById('screenshotContainer');
+                // 캡쳐된 이미지를 표시할 img 요소를 가져옵니다.
+                const screenshotImage = document.getElementById('screenshotImage');
+
+                // 캡쳐된 이미지를 img 요소에 설정합니다.
+                screenshotImage.src = canvas.toDataURL();
+
+                // 캡쳐된 이미지를 표시하는 컨테이너를 보이게 합니다.
+                screenshotContainer.style.display = 'flex';
+            });
+        }
+
+        // 캡쳐된 이미지를 닫는 함수
+        function closeScreenshot() {
+            // 캡쳐된 이미지를 표시하는 컨테이너를 숨깁니다.
+            document.getElementById('screenshotContainer').style.display = 'none';
+        }
+    </script>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</body>
+
+</html>
