@@ -321,7 +321,7 @@
     <script>
           document.addEventListener('DOMContentLoaded', function () {
             const snowflakeContainer = document.getElementById('snowflakeContainer');
-            const numSnowflakes = 13;
+            const numSnowflakes = 15;
 
             for (let i = 0; i < numSnowflakes; i++) {
                 createSnowflake();
@@ -430,6 +430,12 @@
             // 캡쳐된 이미지를 표시하는 컨테이너를 숨깁니다.
             document.getElementById('screenshotContainer').style.display = 'none';
         }
+
+         function restart() {
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        }
+        
     </script>
 
     <a id="downloadLink">Download Link</a>
