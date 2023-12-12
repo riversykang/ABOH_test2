@@ -238,11 +238,13 @@
             background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
+            z-index: 999;
         }
 
         #screenshotImage {
             max-width: 80%; /* 이미지 크기 조정 */
             max-height: 80%;
+            z-index: 1000;
         }
 
         .close-button {
@@ -252,6 +254,7 @@
             padding: 10px;
             font-size: 16px;
             cursor: pointer;
+            z-index: 1001;
         }
     </style>
 </head>
@@ -310,7 +313,7 @@
     <script>
           document.addEventListener('DOMContentLoaded', function () {
             const snowflakeContainer = document.getElementById('snowflakeContainer');
-            const numSnowflakes = 15;
+            const numSnowflakes = 13;
 
             for (let i = 0; i < numSnowflakes; i++) {
                 createSnowflake();
@@ -379,7 +382,7 @@
             }, 7000);
         });
 
-        // 추가된 스크립트
+     // 추가된 스크립트
 
         function captureScreenshot() {
             // 캡쳐 중에 버튼을 비활성화합니다.
@@ -403,6 +406,14 @@
 
                 // 캡쳐된 이미지를 표시하는 컨테이너를 보이게 합니다.
                 screenshotContainer.style.display = 'flex';
+
+                // 이미지를 다운로드할 수 있도록 링크를 생성합니다.
+                const downloadLink = document.createElement('a');
+                downloadLink.href = canvas.toDataURL("image/png");
+                downloadLink.download = 'screenshot.png';
+
+                // 링크를 클릭하여 다운로드를 시작합니다.
+                downloadLink.click();
             });
         }
 
