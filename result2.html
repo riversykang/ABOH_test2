@@ -256,6 +256,12 @@
             cursor: pointer;
             z-index: 1001;
         }
+
+          #downloadLink {
+            display: none; /* 초기에는 숨김 */
+        }
+
+
     </style>
 </head>
 
@@ -263,6 +269,15 @@
 
     <div class="snowflake-container" id="snowflakeContainer">
         <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
+    </div>
+
+
+    <!-- 추가된 캡쳐 화면을 표시할 컨테이너 -->
+    <div class="screenshot-container" id="screenshotContainer">
+        <!-- 캡쳐된 이미지 표시 -->
+        <img id="screenshotImage" alt="Screenshot">
+        <!-- 닫기 버튼 -->
+        <div class="close-button" onclick="closeScreenshot()">Close</div>
     </div>
 
     <div class="titletext"></div>
@@ -300,13 +315,6 @@
 
      <button id="captureButton" onclick="captureScreenshot()">Capture Screenshot</button>
 
-    <!-- 추가된 캡쳐 화면을 표시할 컨테이너 -->
-    <div class="screenshot-container" id="screenshotContainer">
-        <!-- 캡쳐된 이미지 표시 -->
-        <img id="screenshotImage" alt="Screenshot">
-        <!-- 닫기 버튼 -->
-        <div class="close-button" onclick="closeScreenshot()">Close</div>
-    </div>
 
 
 
@@ -382,7 +390,7 @@
             }, 7000);
         });
 
-     // 추가된 스크립트
+   // 추가된 스크립트
 
         function captureScreenshot() {
             // 캡쳐 중에 버튼을 비활성화합니다.
@@ -408,7 +416,7 @@
                 screenshotContainer.style.display = 'flex';
 
                 // 이미지를 다운로드할 수 있도록 링크를 생성합니다.
-                const downloadLink = document.createElement('a');
+                const downloadLink = document.getElementById('downloadLink');
                 downloadLink.href = canvas.toDataURL("image/png");
                 downloadLink.download = 'screenshot.png';
 
@@ -424,6 +432,7 @@
         }
     </script>
 
+    <a id="downloadLink">Download Link</a>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </body>
