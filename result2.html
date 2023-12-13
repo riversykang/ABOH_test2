@@ -301,6 +301,11 @@
 
 <body>
 
+    <audio id="bgMusic" autoplay>
+    <source src="bgmusic.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+    </audio>
+
     <div class="snowflake-container" id="snowflakeContainer">
         <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
     </div>
@@ -353,6 +358,14 @@
 
 
     <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+    // 음악을 자동으로 재생
+    const audio = document.getElementById('bgMusic');
+    audio.play();
+});
+
+
           document.addEventListener('DOMContentLoaded', function () {
             const snowflakeContainer = document.getElementById('snowflakeContainer');
             const numSnowflakes = 15;
