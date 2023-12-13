@@ -287,28 +287,32 @@ function unhoverMainPiece() {
 document.addEventListener('DOMContentLoaded', function() {
     const playButton = document.getElementById('playButton');
     const audio = new Audio('bgmusic.mp3');
-    
+
+    // 저장된 상태를 확인하여 음악을 재생
+    const isAudioPlaying = sessionStorage.getItem('isAudioPlaying');
+    if (isAudioPlaying === 'true') {
+        audio.play();
+    }
+
     playButton.addEventListener('click', function() {
         audio.play();
         sessionStorage.setItem('isAudioPlaying', 'true');
     });
 });
 
+// 이동 함수 추가
+function goToSecondPage() {
+    // 페이지 이동
+    window.location.href = '2.html';
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (이전의 Snowflake 및 다른 요소들의 생성 코드는 그대로 유지) ...
 
-  // 이동 함수 추가
-        function goToSecondPage() {
-            // 페이지 이동
-            window.location.href = '2.html';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // ... (이전의 Snowflake 및 다른 요소들의 생성 코드는 그대로 유지) ...
-
-            // 두 번째 페이지로 이동하는 이벤트 추가
-            var mainPieceContainer = document.querySelector('.main-piece-container');
-            mainPieceContainer.addEventListener('click', goToSecondPage);
-        });
+    // 두 번째 페이지로 이동하는 이벤트 추가
+    var mainPieceContainer = document.querySelector('.main-piece-container');
+    mainPieceContainer.addEventListener('click', goToSecondPage);
+});
 
 
 </script>

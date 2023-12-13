@@ -264,13 +264,16 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
+    const audio = new Audio('bgmusic.mp3');
+
+    // 저장된 상태를 확인하여 음악을 재생
     const isAudioPlaying = sessionStorage.getItem('isAudioPlaying');
     if (isAudioPlaying === 'true') {
-        const audio = new Audio('bgmusic.mp3');
         audio.play();
     }
 });
+
 
     </script>
 </body>
