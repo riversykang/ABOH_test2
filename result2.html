@@ -6,7 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result</title>
     <style>
+
+        @font-face {
+            font-family: 'JEpisode';
+            src: url('path/to/JEpisode.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Alike Angular';
+            src: url('path/to/AlikeAngular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
         body {
+            font-family: 'JEpisode', sans-serif;
             margin: 0;
             padding: 0;
             background-image: url('snowbg.png');
@@ -453,9 +470,13 @@
         window.location.href = 'index.html';
     }
 
-        sessionStorage.setItem('isAudioPlaying', 'false');
 
-        
+         // 저장된 상태를 확인하여 음악을 재생
+    const isAudioPlaying = sessionStorage.getItem('isAudioPlaying');
+    if (isAudioPlaying === 'true') {
+        audio.play();
+    }
+
 
 
 
