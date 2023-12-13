@@ -224,6 +224,24 @@
             left: 1.5%
         }
 
+           #playButton {
+             padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 15%;
+            left: 1.5%;
+            font-family: 'Alike Angular', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0;
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+            color: #13C41A;
+            text-align: center;
+        }
+
         .floating-text {
             position: absolute;
             color: #fff;
@@ -305,6 +323,8 @@
     <source src="bgmusic.mp3" type="audio/mp3">
     Your browser does not support the audio element.
     </audio>
+
+    <button id="playButton">( ♪ )</button>
 
     <div class="snowflake-container" id="snowflakeContainer">
         <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
@@ -484,11 +504,21 @@
     }
 
 
-         // 저장된 상태를 확인하여 음악을 재생
+document.addEventListener('DOMContentLoaded', function() {
+    const playButton = document.getElementById('playButton');
+    const audio = new Audio('bgmusic.mp3');
+
+    // 저장된 상태를 확인하여 음악을 재생
     const isAudioPlaying = sessionStorage.getItem('isAudioPlaying');
     if (isAudioPlaying === 'true') {
         audio.play();
     }
+
+    playButton.addEventListener('click', function() {
+        audio.play();
+        sessionStorage.setItem('isAudioPlaying', 'true');
+    });
+});
 
 
 
