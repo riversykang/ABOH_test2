@@ -504,21 +504,34 @@
     }
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const playButton = document.getElementById('playButton');
     const audio = new Audio('bgmusic.mp3');
+    let isAudioPlaying = sessionStorage.getItem('isAudioPlaying') === 'true';
 
-    // 저장된 상태를 확인하여 음악을 재생
-    const isAudioPlaying = sessionStorage.getItem('isAudioPlaying');
-    if (isAudioPlaying === 'true') {
-        audio.play();
+    // 플레이 버튼의 초기 상태 설정
+    updatePlayButtonState();
+
+    function updatePlayButtonState() {
+        if (isAudioPlaying) {
+            playButton.textContent = '( ❚❚ )'; // 일시정지 아이콘
+        } else {
+            playButton.textContent = '( ♪ )'; // 재생 아이콘
+        }
     }
 
-    playButton.addEventListener('click', function() {
-        audio.play();
-        sessionStorage.setItem('isAudioPlaying', 'true');
+    playButton.addEventListener('click', function () {
+        if (isAudioPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
+        isAudioPlaying = !isAudioPlaying;
+        sessionStorage.setItem('isAudioPlaying', isAudioPlaying.toString());
+        updatePlayButtonState();
     });
-});
+
+    });
 
 
 
