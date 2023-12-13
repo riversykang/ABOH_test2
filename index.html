@@ -17,6 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: url('mscursor.png'), auto;
         }
 
         .titletext {
@@ -65,14 +66,30 @@
 
         h1 {
           color: #13C41A;
-            font-family: Apple SD Gothic Neo;
-            font-size: 18px;
+            font-family: JEpisode;
+            font-size: 16px;
             font-style: normal;
             font-weight: 350;
-            line-height: normal;
+            line-height: 1.5;
             letter-spacing: -1px;
             position: absolute;
-            top: 80%; 
+            top: 78%; 
+            left: 8%;
+            text-align: center;   
+              
+            }
+
+        h2 {
+          color: #13C41A;
+            font-family: JEpisode;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 350;
+            line-height: 1.5;
+            letter-spacing: -1px;
+            position: absolute;
+            top: 78%; 
+            right: 8%;
             text-align: center;   
               
             }
@@ -128,10 +145,11 @@
             transform-origin: center; /* 회전 중심을 중앙으로 설정 */
         }
 
-        .main-piece:hover {
-            content: url('main-piece-2.svg'); /* 마우스 호버 시 이미지 변경 */
-            transform: scale(1.2); /* 마우스 호버 시 크기 조절 (원하는 크기로 조절) */
-        }
+       .main-piece:hover {
+    /* content: url('main-piece-2.svg'); */ /* 이 부분을 주석 처리 또는 삭제 */
+    background-image: url('main-piece-2.svg'); /* 이미지 변경 */
+    transform: scale(1.2) translate(-50%, -50%);
+}
         
 
         @keyframes rotate {
@@ -143,9 +161,31 @@
             }
         }
 
+        #playButton {
+             padding: 10px 20px;
+            font-size: 35px;
+            cursor: pointer;
+            position: absolute;
+            top: 1%;
+            right: 5%;
+            font-family: 'Alike Angular', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0;
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+            color: #13C41A;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
+
+   <button id="playButton">( ♪ )</button>
+
+
     <div class="snowflake-container" id="snowflakeContainer">
     <!-- 이미지 태그 추가 -->
     <img src="snowflake.svg" alt="Snowflake Image" class="snowflake">
@@ -153,7 +193,8 @@
 
     <div class="titletext"></div>
     <div class="roundbrk">(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</div>
-    <h1>올해, 당신은 얼마나 행복하셨나요?<br>올해 나의 행복의 조각들을 하나씩 찾아,<br>병 안에 담아 간직하세요.</h1>
+    <h1>How many happy memories did you get this year?<br>올해, 당신은 얼마나 행복하셨나요?</h1>
+     <h2>Find your happy memories and keep them in a bottle forever<br>올해 당신의 행복의 기억들을 찾아 병에 담아 간직해보세요</h2>
       <div class="main-piece-container" onmouseover="hoverMainPiece()" onmouseout="unhoverMainPiece()">
         <img src="main-piece.svg" alt="Main Piece Image" class="main-piece">
     </div>
@@ -189,7 +230,7 @@
           // JavaScript로 무작위 위치에 Snowflake.svg 이미지 생성 및 애니메이션 추가
         document.addEventListener('DOMContentLoaded', function() {
             const snowflakeContainer = document.getElementById('snowflakeContainer');
-            const numSnowflakes = 15;
+            const numSnowflakes = 13;
 
             for (let i = 0; i < numSnowflakes; i++) {
                 createSnowflake();
@@ -242,6 +283,17 @@ function unhoverMainPiece() {
     mainPiece.src = 'main-piece.svg'; // 마우스가 벗어날 때 이미지 초기화
     mainPiece.style.transform = 'scale(1) translate(-50%, -50%)'; // 크기 초기화 및 이동
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const playButton = document.getElementById('playButton');
+    const audio = new Audio('bgmusic.mp3');
+    
+    playButton.addEventListener('click', function() {
+        audio.play();
+        sessionStorage.setItem('isAudioPlaying', 'true');
+    });
+});
+
 
 
   // 이동 함수 추가
